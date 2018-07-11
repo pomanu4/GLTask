@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/CSS/style.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title></title>
+</head>
+<body>
+	<div>
+		<a class="btn btn-info" role="button" th:href="@{/}">home page</a>
+		<form action="#" th:action="@{/logout}" method="post" >
+			<button type="submit" class="btn btn-alert"> logout </button>
+		</form>
+	</div>
+	
+	<div>
+		<span>Money Earned : </span>
+		<span  id="moneyEarned" ></span>
+	</div>
+	<div id="frame"></div>
+	<div class="tableDiv">
+		<table class="table table-bordered" id="table">
+			<tr>
+				<th >#</th>
+				<th >NAME</th>
+				<th >PRICE</th>
+				<th >Buy</th>
+				<th >times Bought</th>
+			</tr>
+		</table>
+		<br>
+		<div id="bucket" class="bucket"> <span>bucket : </span> </div>
+		<br>
+		<div>
+			<span>total price : </span>
+			<span  id="totalPrice" ></span>
+		</div>
+		<br>
+		<button class="btn btn-info" id="refresh" >REFRESH</button>
+		<br>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<form action="#" th:action="@{add/book}">
+			<input type="text" name="name" required="required">
+			<input type="number" name="price" required="required" min = 0>
+			<button class="btn btn-info" type="submit">add book</button>
+		</form>
+			
+		</div>
+	</div>
+<script src="/JS/script.js"></script>	
+</body>
+</html>
