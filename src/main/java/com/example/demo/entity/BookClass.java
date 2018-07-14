@@ -20,7 +20,7 @@ public class BookClass implements Serializable {
 	@Column(name="book_id")
 	private int bId;
 	
-	@Column(name="name")
+	@Column(name="b_name")
 	private String bookName;
 	
 	@Column(name="price")
