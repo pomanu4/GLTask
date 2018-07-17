@@ -7,6 +7,10 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/CSS/style.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -46,12 +50,14 @@
 		<button class="btn btn-info" id="refresh" >REFRESH</button>
 		<br>
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
-		<form action="#" th:action="@{add/book}">
-			<input type="text" name="name" required="required">
-			<input type="number" name="price" required="required" min = 0>
-			<button class="btn btn-info" type="submit">add book</button>
-		</form>
-			
+			<span></span>
+			<form id="addBook" method="post" > <!--  onsubmit="return false;" --> 
+				<input id="bookName" type="text" th:name="name" required="required">
+				<input id="bookPrice" type="number" th:name="price" required="required" min = 0>
+				<input id="hidden"	type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
+				<input type="submit" value="  add book  ">
+			</form>
+						
 		</div>
 	</div>
 <script src="/JS/script.js"></script>	

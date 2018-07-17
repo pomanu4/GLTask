@@ -83,9 +83,57 @@ function refresh() {
 }
 
 function prepareTable() {
-	$("#table").children().filter(function(index) {
-		return index != 0
+	var t = $("#table tr").filter(function(index) {
+		return index != 0;
 	}).remove();
 }
 
 
+function addBook() {
+		
+	var content = $("#addBook");
+			
+		$.ajax({
+			type : "POST",
+			url : "/books/addone",
+			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+			data : content.serialize(),
+									
+			success : function(result) {
+				$("#addBook").prev().text(result).css("color", "blue");
+				getAllBooks();
+			},
+			
+			error : function(xhr, ajaxOptions, thrownError) {
+				$("#addBook").prev().text("error occured !!!").css("color", "red");
+			}
+		});
+}
+
+$("#addBook").submit( function(event) {
+	event.preventDefault();
+	
+	addBook();	
+});
+
+
+function addBookObject() {
+		
+	var book = {"bookName" : "bookObject", "bookPrice" : 55};
+		
+		$.ajax({
+			type : "POST",
+			url : "/books/object",
+			contentType : "application/json; charset=UTF-8",
+			data : JSON.stringify(book),
+			dataType: "text",
+						
+			success : function(result) {
+				$("#addBook").prev().text(result).css("color", "blue");
+			},
+			
+			error : function(error) {
+				$("#addBook").prev().text("error occured !!!").css("color", "red");
+			}
+		});
+}
