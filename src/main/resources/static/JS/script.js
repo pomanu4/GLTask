@@ -118,7 +118,10 @@ $("#addBook").submit( function(event) {
 
 
 function addBookObject() {
-		
+	
+	var token = $("#hidden").val();
+// get token value from hidden field and set to header
+	
 	var book = {"bookName" : "bookObject", "bookPrice" : 55};
 		
 		$.ajax({
@@ -127,7 +130,11 @@ function addBookObject() {
 			contentType : "application/json; charset=UTF-8",
 			data : JSON.stringify(book),
 			dataType: "text",
-						
+			
+			headers : {
+				"X-CSRF-Token" : token
+			},
+	        
 			success : function(result) {
 				$("#addBook").prev().text(result).css("color", "blue");
 			},
@@ -137,3 +144,4 @@ function addBookObject() {
 			}
 		});
 }
+

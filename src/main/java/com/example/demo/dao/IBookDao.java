@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.BookClass;
 
-public interface BookDAOInterf extends JpaRepository<BookClass, Integer>{
-	
+public interface IBookDao extends JpaRepository<BookClass, Integer>{
 	
 }

@@ -23,7 +23,7 @@ public class BookClass implements Serializable {
 	@Column(name="b_name")
 	private String bookName;
 	
-	@Column(name="price")
+	@Column(name="b_price")
 	private int bookPrice;
 	
 

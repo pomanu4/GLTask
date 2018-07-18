@@ -51,13 +51,12 @@
 		<br>
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<span></span>
-			<form id="addBook" method="post" > <!--  onsubmit="return false;" --> 
+			<form id="addBook" method="post" >  
 				<input id="bookName" type="text" th:name="name" required="required">
 				<input id="bookPrice" type="number" th:name="price" required="required" min = 0>
 				<input id="hidden"	type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >
 				<input type="submit" value="  add book  ">
-			</form>
-						
+			</form>						
 		</div>
 	</div>
 <script src="/JS/script.js"></script>	

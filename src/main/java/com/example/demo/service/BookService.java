@@ -7,19 +7,19 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.BookDAOInterf;
+import com.example.demo.dao.IBookDao;
 import com.example.demo.entity.BookClass;
-import com.example.demo.serviceInterf.BookServInterf;
+import com.example.demo.serviceInterf.IBookService;
 
 @Service
 @Transactional
-public class BookService implements BookServInterf {
+public class BookService implements IBookService {
 	
 	@Autowired
-	private BookDAOInterf bookDao;
+	private IBookDao bookDao;
 
 	@Override
-	public List<BookClass> getAllBook() {
+	public List<BookClass> getAllBooks() {
 		return bookDao.findAll();
 	}
 

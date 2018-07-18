@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.BookClass;
-import com.example.demo.serviceInterf.BookServInterf;
+import com.example.demo.serviceInterf.IBookService;
 
 @RestController
-public class RestControl {
+public class AppRestController {
 	
 	@Autowired
-	private BookServInterf bookServ;
+	private IBookService bookServ;
 	
 	@RequestMapping(path= {"books/all"}, method=RequestMethod.GET)
 	public ResponseEntity<List<BookClass>> getAllBooks(){
-		List<BookClass> allBooks = bookServ.getAllBook();
+		List<BookClass> allBooks = bookServ.getAllBooks();
 		
 		return new ResponseEntity<List<BookClass>>(allBooks, HttpStatus.OK);
 	}
 	
 	@RequestMapping(path= {"books/addone"}, method=RequestMethod.POST)
-	public ResponseEntity<String> addOneBook( @RequestParam("name") String name, @RequestParam("price") int price){		
+	public ResponseEntity<String> addOneBookToDataBase( @RequestParam("name") String name, @RequestParam("price") int price){		
 		BookClass book = new BookClass(name, price);
 		bookServ.saveBook(book);
 		
@@ -36,9 +36,8 @@ public class RestControl {
 	}
 	
 	@RequestMapping(path= {"books/object"}, method=RequestMethod.POST)
-	public ResponseEntity<String> getPostMessage(@RequestBody BookClass book){
-		System.out.println(book);
+	public ResponseEntity<String> addBoookAsJsonObject(@RequestBody BookClass book){
 		bookServ.saveBook(book);
-		return new ResponseEntity<String>("object succesfuly sended", HttpStatus.OK);
+		return new ResponseEntity<String>("object succesfuly added", HttpStatus.OK);
 	}
 }

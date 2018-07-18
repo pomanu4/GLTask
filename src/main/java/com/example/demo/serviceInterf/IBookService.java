@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.example.demo.entity.BookClass;
 
-public interface BookServInterf {
+public interface IBookService {
 	
-	List<BookClass> getAllBook();
+	List<BookClass> getAllBooks();
 	
 	BookClass saveBook(BookClass book);
 
